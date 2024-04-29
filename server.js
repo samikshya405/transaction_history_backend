@@ -1,21 +1,30 @@
 import express from "express";
-import mongoose from "mongoose";
-import cors from 'cors'
+
+import "dotenv/config.js";
+import cors from "cors";
 import morgan from "morgan";
+import { connectMongo } from "./src/config/connectMongo.js";
+import userDetailRouter from "./src/Router/userDetailRouter.js";
+import transactionRouter from "./src/Router/transactionRouter.js";
 
-const app = express()
+const app = express();
 
-app.use(express.json())
-app.use(cors())
-app.use(morgan())
+app.use(express.json());
+app.use(cors());
 
-const PORT = process.env.PORT || 8000
+connectMongo();
 
+const PORT = process.env.PORT || 8000;
+if (process.env.NODE_ENV !== "production") {
+  app.use(morgan("dev"));
+}
 
-app.listen(PORT, (error)=>{
-    error ?
-    console.log(error)
-    :
-    console.log("server running in port ", PORT)
+//users
+app.use("/api/v1/users", userDetailRouter);
 
-})
+//transaction
+app.use("/api/v1/transaction", transactionRouter);
+
+app.listen(PORT, (error) => {
+  error ? console.log(error) : console.log("server running in port ", PORT);
+});
