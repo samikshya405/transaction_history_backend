@@ -1,7 +1,33 @@
 # ===========User Section
 
-# post user
+# get user
 GET http://localhost:8000/api/v1/users
 
+###post user
+POST http://localhost:8000/api/v1/users
+#header
+Content-Type: application/json
+
+#body
+{
+   "name":"sami",
+   "email":"sami@gmail.com",
+   "phone":9999,
+   "password":"sami"
+}
+
+
+
+
+
+### delete data from database
+DELETE http://localhost:8000/api/v1/users
+#header of request
+Content-Type: application/json
+
+#Body of request
+{
+    "_id":"662522f22b6e7853cd74a631"
+}
 
 # ==============transcation

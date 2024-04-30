@@ -9,7 +9,7 @@ import transactionRouter from "./src/Router/transactionRouter.js";
 
 const app = express();
 
-app.use(express.json());
+
 app.use(cors());
 
 connectMongo();
@@ -18,7 +18,7 @@ const PORT = process.env.PORT || 8000;
 if (process.env.NODE_ENV !== "production") {
   app.use(morgan("dev"));
 }
-
+app.use(express.json());
 //users
 app.use("/api/v1/users", userDetailRouter);
 
