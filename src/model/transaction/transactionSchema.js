@@ -1,2 +1,25 @@
+import mongoose from 'mongoose'
 
-export default mongoose.model("Task", taskSchema)
+const transactionSchema = new mongoose.Schema({
+    type:{
+        type:String,
+        required:true
+    },
+    description:{
+        type:String,
+        required:true
+    },
+    amount:{
+        type:String,
+        required:true
+    },
+    date:{
+        type:String,
+        required:true
+    }
+
+
+   
+})
+
+export default mongoose.model("transaction", transactionSchema)
